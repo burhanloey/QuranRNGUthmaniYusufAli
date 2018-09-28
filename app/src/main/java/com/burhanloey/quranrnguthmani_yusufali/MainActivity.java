@@ -25,23 +25,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void randomize(View view) {
+        TextView titleTextView = findViewById(R.id.title_textview);
         TextView arabicTextView = findViewById(R.id.arabic_textview);
         TextView englishTextView = findViewById(R.id.english_textview);
 
         int chosenSurah = random.nextInt(numberOfAyahs.length) + 1;
         int chosenVerse = random.nextInt(numberOfAyahs[chosenSurah - 1]) + 1;
 
-        arabicTextView.setText(getStringResourceByName("ar_" + chosenSurah + "_" + chosenVerse));
-        englishTextView.setText(getStringResourceByName("en_" + chosenSurah + "_" + chosenVerse));
+        String title = getStringResourceByName("title_" + 1) + " " +
+                getString(R.string.verse) + " " + chosenVerse;
+        String arabicText = getStringResourceByName("ar_" + chosenSurah + "_" + chosenVerse);
+        String englishText = getStringResourceByName("en_" + chosenSurah + "_" + chosenVerse);
+
+        titleTextView.setText(title);
+        arabicTextView.setText(arabicText);
+        englishTextView.setText(englishText);
     }
 
     private String getStringResourceByName(String name) {
-        int id = getResources().getIdentifier(name, "string", getPackageName());
+        int resId = getResources().getIdentifier(name, "string", getPackageName());
 
-        if (id == 0) {
+        if (resId == 0) {
             return name;
         } else {
-            return getString(id);
+            return getString(resId);
         }
     }
 }
