@@ -18,13 +18,13 @@
 (defparameter *surahs-data*
   (get-json-value *surahs* :data))
 
-(defparameter *ayahs*
+(defparameter *number-of-ayahs*
   (mapcar
    (lambda (surah) (get-json-value surah :number-of-ayahs))
    *surahs-data*))
 
 (defun print-number-of-ayahs ()
-  (format t "~{~a~^, ~}" *ayahs*))
+  (format t "~{~a~^, ~}" *number-of-ayahs*))
 
 (defparameter *english-names*
   (mapcar
@@ -35,3 +35,12 @@
   (format t "~:{<string name=\"title_~a\">~a</string>~%~}"
           (loop for i from 1 for name in *english-names*
                 collect (list i name))))
+
+(defparameter *quran*
+  (json-request "http://api.alquran.cloud/quran/quran-uthmani"))
+
+(defparameter *quran-data*
+  (get-json-value *quran* :data))
+
+(defparameter *ayahs*
+  (get-json-value *quran-data* :surahs))
