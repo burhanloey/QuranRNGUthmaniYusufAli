@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         int chosenSurah = random.nextInt(numberOfAyahs.length) + 1;
         int chosenVerse = random.nextInt(numberOfAyahs[chosenSurah - 1]) + 1;
 
-        String title = getStringResourceByName("title_" + 1) + " " +
+        String title = getStringResourceByName("title_" + chosenSurah) + " " +
                 getString(R.string.verse) + " " + chosenVerse;
         String arabicText = getStringResourceByName("ar_" + chosenSurah + "_" + chosenVerse);
         String englishText = getStringResourceByName("en_" + chosenSurah + "_" + chosenVerse);
