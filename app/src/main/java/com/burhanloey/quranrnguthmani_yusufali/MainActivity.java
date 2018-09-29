@@ -18,17 +18,40 @@ public class MainActivity extends AppCompatActivity {
             50, 40, 46, 42, 29, 19, 36, 25, 22, 17, 19, 26, 30, 20, 15, 21, 11, 8, 8, 19, 5, 8, 8,
             11, 11, 8, 3, 9, 5, 4, 7, 3, 6, 3, 5, 4, 5, 6 };
 
+    private TextView titleTextView;
+    private TextView arabicTextView;
+    private TextView englishTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (titleTextView == null) { titleTextView = findViewById(R.id.title_textview); }
+        if (arabicTextView == null) { arabicTextView = findViewById(R.id.arabic_textview); }
+        if (englishTextView == null) { englishTextView = findViewById(R.id.english_textview); }
+
+        if (savedInstanceState != null) {
+            String title = savedInstanceState.getString("title");
+            String arabicText = savedInstanceState.getString("arabic_text");
+            String englishText = savedInstanceState.getString("english_text");
+
+            titleTextView.setText(title);
+            arabicTextView.setText(arabicText);
+            englishTextView.setText(englishText);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("title", titleTextView.getText().toString());
+        outState.putString("arabic_text", arabicTextView.getText().toString());
+        outState.putString("english_text", englishTextView.getText().toString());
     }
 
     public void randomize(View view) {
-        TextView titleTextView = findViewById(R.id.title_textview);
-        TextView arabicTextView = findViewById(R.id.arabic_textview);
-        TextView englishTextView = findViewById(R.id.english_textview);
-
         int chosenSurah = random.nextInt(numberOfAyahs.length) + 1;
         int chosenVerse = random.nextInt(numberOfAyahs[chosenSurah - 1]) + 1;
 
