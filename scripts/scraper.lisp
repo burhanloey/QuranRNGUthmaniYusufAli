@@ -44,3 +44,13 @@
 
 (defparameter *ayahs*
   (get-json-value *quran-data* :surahs))
+
+(defun print-arabic-texts ()
+  (loop for surah in *ayahs*
+        for surah-no = (get-json-value surah :number)
+        for ayahs = (get-json-value surah :ayahs)
+        do (loop for ayah in ayahs
+                 for ayah-no = (get-json-value ayah :number-in-surah)
+                 for text = (get-json-value ayah :text)
+                 do (format t "<string name=\"ar_~a_~a\">~a</string>~%"
+                            surah-no ayah-no text))))
