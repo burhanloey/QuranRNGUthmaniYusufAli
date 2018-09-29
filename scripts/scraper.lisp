@@ -12,6 +12,9 @@
     (lambda (x) (equal (car x) indicator))
     alist)))
 
+
+;; Number of ayahs
+
 (defparameter *surahs*
   (json-request "http://api.alquran.cloud/surah"))
 
@@ -26,6 +29,9 @@
 (defun print-number-of-ayahs ()
   (format t "~{~a~^, ~}" *number-of-ayahs*))
 
+
+;; Surah names in english
+
 (defparameter *english-names*
   (mapcar
    (lambda (surah) (get-json-value surah :english-name))
@@ -36,21 +42,35 @@
           (loop for i from 1 for name in *english-names*
                 collect (list i name))))
 
+
+;; Quran texts
+
+(defun print-texts (surahs prefix)
+  (loop for surah in surahs
+        for surah-no = (get-json-value surah :number)
+        for ayahs = (get-json-value surah :ayahs)
+        do (loop for ayah in ayahs
+                 for ayah-no = (get-json-value ayah :number-in-surah)
+                 for text = (get-json-value ayah :text)
+                 do (format t "<string name=\"~a_~a_~a\">~a</string>~%"
+                            prefix surah-no ayah-no text))))
+
 (defparameter *quran*
   (json-request "http://api.alquran.cloud/quran/quran-uthmani"))
 
 (defparameter *quran-data*
   (get-json-value *quran* :data))
 
-(defparameter *ayahs*
+(defparameter *surahs*
   (get-json-value *quran-data* :surahs))
 
-(defun print-arabic-texts ()
-  (loop for surah in *ayahs*
-        for surah-no = (get-json-value surah :number)
-        for ayahs = (get-json-value surah :ayahs)
-        do (loop for ayah in ayahs
-                 for ayah-no = (get-json-value ayah :number-in-surah)
-                 for text = (get-json-value ayah :text)
-                 do (format t "<string name=\"ar_~a_~a\">~a</string>~%"
-                            surah-no ayah-no text))))
+(defparameter *en-quran*
+  (json-request "http://api.alquran.cloud/quran/en.yusufali"))
+
+(defparameter *en-quran-data*
+  (get-json-value *en-quran* :data))
+
+(defparameter *en-surahs*
+  (get-json-value *en-quran-data* :surahs))
+
+(format t "File loaded.")
