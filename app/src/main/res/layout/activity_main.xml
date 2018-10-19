@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -18,7 +19,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
 
             <TextView
                 android:id="@+id/title_textview"
@@ -70,7 +72,7 @@
         android:background="@android:color/transparent"
         android:onClick="prev"
         android:text="@string/prev"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/randomize_button"
         app:layout_constraintHorizontal_bias="0.5"
@@ -84,7 +86,7 @@
         android:background="@android:color/transparent"
         android:onClick="randomize"
         android:text="@string/randomize"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/next_button"
         app:layout_constraintHorizontal_bias="0.5"
@@ -98,7 +100,7 @@
         android:background="@android:color/transparent"
         android:onClick="next"
         android:text="@string/next"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
