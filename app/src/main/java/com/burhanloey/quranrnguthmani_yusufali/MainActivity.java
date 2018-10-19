@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
      * @param view View
      */
     public void next(View view) {
-        System.out.println("verse: " + chosenVerse + ", surah: " + chosenSurah);
         if (chosenVerse < numberOfAyahs[chosenSurah - 1]) {
             chosenVerse++;
         } else if (chosenSurah < numberOfAyahs.length) {
