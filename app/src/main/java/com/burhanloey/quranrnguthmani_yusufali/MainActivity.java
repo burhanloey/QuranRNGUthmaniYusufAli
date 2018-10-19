@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         if (englishTextView == null) { englishTextView = findViewById(R.id.english_textview); }
 
         if (savedInstanceState != null) {
+            chosenSurah = savedInstanceState.getInt("chosen_surah", 1);
+            chosenVerse = savedInstanceState.getInt("chosen_verse", 1);
             String title = savedInstanceState.getString("title");
             String arabicText = savedInstanceState.getString("arabic_text");
             String englishText = savedInstanceState.getString("english_text");
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        outState.putInt("chosen_surah", chosenSurah);
+        outState.putInt("chosen_verse", chosenVerse);
         outState.putString("title", titleTextView.getText().toString());
         outState.putString("arabic_text", arabicTextView.getText().toString());
         outState.putString("english_text", englishTextView.getText().toString());
