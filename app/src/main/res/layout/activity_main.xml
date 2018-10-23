@@ -74,9 +74,9 @@
 
     <Button
         android:id="@+id/prev_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/transparent"
+        android:background="?attr/selectableItemBackground"
         android:onClick="prev"
         android:text="@string/prev"
         android:textColor="@android:color/white"
@@ -88,9 +88,9 @@
 
     <Button
         android:id="@+id/randomize_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/transparent"
+        android:background="?attr/selectableItemBackground"
         android:onClick="randomize"
         android:text="@string/randomize"
         android:textColor="@android:color/white"
@@ -102,9 +102,9 @@
 
     <Button
         android:id="@+id/next_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/transparent"
+        android:background="?attr/selectableItemBackground"
         android:onClick="next"
         android:text="@string/next"
         android:textColor="@android:color/white"
