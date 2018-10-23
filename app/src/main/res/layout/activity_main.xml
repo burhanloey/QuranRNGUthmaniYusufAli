@@ -10,7 +10,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/randomize_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,14 +61,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/arabic_textview" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
 
     <Button
         android:id="@+id/prev_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_height="0dp"
         android:background="@android:color/transparent"
         android:onClick="prev"
         android:text="@string/prev"
@@ -77,13 +83,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/randomize_button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
     <Button
         android:id="@+id/randomize_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_height="0dp"
         android:background="@android:color/transparent"
         android:onClick="randomize"
         android:text="@string/randomize"
@@ -91,13 +97,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/next_button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/prev_button" />
+        app:layout_constraintStart_toEndOf="@+id/prev_button"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
     <Button
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_height="0dp"
         android:background="@android:color/transparent"
         android:onClick="next"
         android:text="@string/next"
@@ -105,6 +111,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/randomize_button" />
+        app:layout_constraintStart_toEndOf="@+id/randomize_button"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
 </android.support.constraint.ConstraintLayout>
