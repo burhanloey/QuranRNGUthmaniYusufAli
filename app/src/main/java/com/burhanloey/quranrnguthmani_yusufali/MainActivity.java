@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView arabicTextView;
     private TextView englishTextView;
 
+    private int chosenSurah = 1;
+    private int chosenVerse = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         if (englishTextView == null) { englishTextView = findViewById(R.id.english_textview); }
 
         if (savedInstanceState != null) {
+            chosenSurah = savedInstanceState.getInt("chosen_surah", 1);
+            chosenVerse = savedInstanceState.getInt("chosen_verse", 1);
             String title = savedInstanceState.getString("title");
             String arabicText = savedInstanceState.getString("arabic_text");
             String englishText = savedInstanceState.getString("english_text");
@@ -46,15 +51,64 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        outState.putInt("chosen_surah", chosenSurah);
+        outState.putInt("chosen_verse", chosenVerse);
         outState.putString("title", titleTextView.getText().toString());
         outState.putString("arabic_text", arabicTextView.getText().toString());
         outState.putString("english_text", englishTextView.getText().toString());
     }
 
-    public void randomize(View view) {
-        int chosenSurah = random.nextInt(numberOfAyahs.length) + 1;
-        int chosenVerse = random.nextInt(numberOfAyahs[chosenSurah - 1]) + 1;
+    /**
+     * Click event for prev_button.
+     *
+     * @param view View
+     */
+    public void prev(View view) {
+        if (chosenVerse > 1) {
+            chosenVerse--;
+        } else if (chosenSurah > 1) {
+            chosenSurah--;
+            chosenVerse = numberOfAyahs[chosenSurah - 1];
+        } else {
+            return;
+        }
 
+        loadVerse();
+    }
+
+    /**
+     * Click event for randomize_button.
+     *
+     * @param view View
+     */
+    public void randomize(View view) {
+        chosenSurah = random.nextInt(numberOfAyahs.length) + 1;
+        chosenVerse = random.nextInt(numberOfAyahs[chosenSurah - 1]) + 1;
+
+        loadVerse();
+    }
+
+    /**
+     * Click event for next_button.
+     *
+     * @param view View
+     */
+    public void next(View view) {
+        if (chosenVerse < numberOfAyahs[chosenSurah - 1]) {
+            chosenVerse++;
+        } else if (chosenSurah < numberOfAyahs.length) {
+            chosenSurah++;
+            chosenVerse = 1;
+        } else {
+            return;
+        }
+
+        loadVerse();
+    }
+
+
+
+    private void loadVerse() {
         String title = getStringResourceByName("title_" + chosenSurah) + " " +
                 getString(R.string.verse) + " " + chosenVerse;
         String arabicText = getStringResourceByName("ar_" + chosenSurah + "_" + chosenVerse);

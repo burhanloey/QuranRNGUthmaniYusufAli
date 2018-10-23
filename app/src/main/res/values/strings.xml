@@ -2,6 +2,8 @@
     <string name="app_name">Quran RNG (Uthmani - Yusuf Ali)</string>
     <string name="randomize">Randomize</string>
     <string name="verse">verse</string>
+    <string name="prev">&lt;&lt;</string>
+    <string name="next">&gt;&gt;</string>
     <string name="title_init">Al-Faatiha verse 1</string>
     <string name="title_1">Al-Faatiha</string>
     <string name="title_2">Al-Baqara</string>
